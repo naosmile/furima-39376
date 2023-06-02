@@ -7,11 +7,11 @@
 | nickname                   | string  | null: false               |
 | email                      | string  | null: false, unique: true |
 | encrypted_password         | string  | null: false               |
-| last name_full width       | string  | null: false               |
-| first name_full width      | string  | null: false               |
-| last name kana_full width  | string  | null: false               |
-| first name kana_full width | string  | null: false               |
-| day of birth               | date    | null: false               |
+| last_name_full_width       | string  | null: false               |
+| first_name_full_width      | string  | null: false               |
+| last_name_kana_full_width  | string  | null: false               |
+| first_name_kana_full_width | string  | null: false               |
+| date_of_birth              | date    | null: false               |
 
 ### Association
 
@@ -26,9 +26,9 @@
 | explain            | text       | null: false                    |
 | category_id        | integer    | null: false                    |
 | situation_id       | integer    | null: false                    |
-| shipping charge_id | integer    | null: false                    |
-| prefectures_id     | integer    | null: false                    |
-| number of days_id  | integer    | null: false                    |
+| shipping_charge_id | integer    | null: false                    |
+| prefecture_id      | integer    | null: false                    |
+| number_of_date_id  | integer    | null: false                    |
 | price              | integer    | null: false                    |            
 | user               | references | null: false, foreign_key: true |           
 
@@ -54,12 +54,12 @@
 
 | Column           | Type       | Options                        |
 | ---------------- | ---------- | ------------------------------ |
-| post code        | string     | null: false                    |            
-| prefectures_id   | integer    | null: false                    |
+| post_code        | string     | null: false                    |            
+| prefecture_id    | integer    | null: false                    |
 | municipalities   | string     | null: false                    |
 | address          | string     | null: false                    |
-| building name    | string     |                                |
-| telephone number | string     | null: false                    |
+| building_name    | string     |                                |
+| telephone_number | string     | null: false                    |
 | buy              | references | null: false, foreign_key: true |                            
 
 ### Association
