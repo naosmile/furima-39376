@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, except: [:index, :new, :create]
-  before_action :authenticate_user!, except: [:index, :show] 
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :contributor_confirmation, only: [:edit, :update]
 
   def index
@@ -29,11 +29,10 @@ class ItemsController < ApplicationController
   def update
     if @item.update(item_params)
       redirect_to item_path(@item)
-     else
+    else
       render :edit
     end
   end
-
 
   private
 
@@ -43,8 +42,7 @@ class ItemsController < ApplicationController
   end
 
   def set_item
-    @item = Item.find(params[:id]) 
-    
+    @item = Item.find(params[:id])
   end
 
   def contributor_confirmation
