@@ -1,24 +1,37 @@
 class PurchasesController < ApplicationController
+  before_action :set_item
+  before_action :authenticate_user!
+  before_action :contributor_confirmation
 
   def index
-    @purchases_address = PurchaseAddress.new
+    @purchase_address = PurchaseAddress.new
   end
 
   def create
-    @purchases_address = PurchaseAddress.new(purchases_params)
-    # @purchase_address = item.build_purchase_address(purchase_params)
-    if @purchases_address.valid?
-       @purchases_address.save
-       redirect_to root_path
+    @purchase_address = PurchaseAddress.new(purchase_params)
+    if @purchase_address.valid?
+      @purchase_address.save
+      redirect_to root_path
     else
-     render :index
+      render :index
     end
   end
 
-
   private
 
-  def purchases_params
-    params.permit(:postal_code, :prefecture_id, :city, :house_number, :building_name, :telephone_number, :purchases_id).merge(user_id: current_user.id, item_id: params[:item_id])
+  def purchase_params
+    params.require(:purchase_address).permit(:postal_code, :prefecture_id, :city, :house_number, :building_name, :phone_number).merge(
+      user_id: current_user.id, item_id: params[:item_id])
+  end
+
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
+
+  def contributor_confirmation
+    @item = Item.find(params[:item_id])
+    if @item.user_id == current_user.id || @item.purchase != nil
+      redirect_to root_path
+    end
   end
 end
