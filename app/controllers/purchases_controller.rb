@@ -8,7 +8,6 @@ class PurchasesController < ApplicationController
   end
 
   def create
-    #  binding.pry
     @purchase_address = PurchaseAddress.new(purchase_params)
     if @purchase_address.valid?
       pay_item
@@ -41,7 +40,6 @@ class PurchasesController < ApplicationController
   end
 
   def contributor_confirmation
-    @item = Item.find(params[:item_id])
     return unless @item.user_id == current_user.id || !@item.purchase.nil?
 
     redirect_to root_path
