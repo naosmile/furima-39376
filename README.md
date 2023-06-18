@@ -13,10 +13,11 @@
 | first_name_kana_full_width | string  | null: false               |
 | date_of_birth              | date    | null: false               |
 
-### Association
+### Association . 　
 
-- has_many :items
-- has_many :purchases
+<!-- ↑xc一s112b「
+
+-->
 
 ## items テーブル
 
