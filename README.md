@@ -13,10 +13,11 @@
 | first_name_kana_full_width | string  | null: false               |
 | date_of_birth              | date    | null: false               |
 
-### Association
+### Association . 　
 
-- has_many :items
-- has_many :buys
+<!-- ↑xc一s112b「
+
+-->
 
 ## items テーブル
 
@@ -34,10 +35,10 @@
 
 ### Association
 
-- belongs_to :user
-- has_one :buy
+- belongs_to :users
+- has_one :purchases
 
-## buys テーブル
+## purchases テーブル
 
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
@@ -46,23 +47,22 @@
 
 ### Association
 
-- belongs_to :user
-- belongs_to :item
-- has_one :delivery
+- belongs_to :users
+- belongs_to :items
+- has_one :address
 
-## deliveries テーブル
+## address テーブル
 
 | Column           | Type       | Options                        |
 | ---------------- | ---------- | ------------------------------ |
-| post_code        | string     | null: false                    |            
+| postal_code      | string     | null: false                    |            
 | prefecture_id    | integer    | null: false                    |
-| municipalities   | string     | null: false                    |
-| address          | string     | null: false                    |
+| city             | string     | null: false                    |
+| house_number     | string     | null: false                    |
 | building_name    | string     |                                |
-| telephone_number | string     | null: false                    |
-| buy              | references | null: false, foreign_key: true |                            
+| phone_number     | string     | null: false                    |
+| purchase        | references | null: false, foreign_key: true |                            
 
 ### Association
 
-- belongs_to :buy
-
+- belongs_to :purchases
