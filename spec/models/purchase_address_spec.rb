@@ -56,8 +56,20 @@ RSpec.describe PurchaseAddress, type: :model do
         expect(@purchase_address.errors.full_messages).to include("Phone number can't be blank")
       end
 
-      it '電話番号は、9桁以下12桁以上で半角数値以外が含まれている場合、保存ができないこと（良い例:09012345678 良くない例:090-1234-5678)' do
+      it '電話番号は、9桁以下では保存ができないこと（良い例:09012345678 良くない例:090-1234-5678)' do
+        @purchase_address.phone_number = '123456789'
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include('Phone number Input only number')
+      end
+
+      it '電話番号は、12桁以上では保存ができないこと（良い例:09012345678 良くない例:090-1234-5678)' do
         @purchase_address.phone_number = '123456789234'
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include('Phone number Input only number')
+      end
+
+      it '電話番号は、半角数値以外が含まれている場合、保存ができないこと（良い例:09012345678 良くない例:090-1234-5678)' do
+        @purchase_address.phone_number = '１'
         @purchase_address.valid?
         expect(@purchase_address.errors.full_messages).to include('Phone number Input only number')
       end
